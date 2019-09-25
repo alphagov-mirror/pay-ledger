@@ -13,7 +13,8 @@ import org.junit.runners.Suite;
         RefundCreatedByUserEventQueueContractTest.class,
         RefundSubmittedEventQueueContractTest.class,
         RefundSucceededEventQueueContractTest.class,
-        CaptureSubmittedEventQueueContractTest.class
+        CaptureSubmittedEventQueueContractTest.class,
+        PaymentNotificationCreatedEventQueueContractTest.class
 })
 public class ContractTestSuite {
 
