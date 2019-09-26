@@ -336,6 +336,7 @@ public class TransactionFixture implements DbFixture<TransactionFixture, Transac
         transactionDetails.addProperty("gateway_transaction_id", gatewayTransactionId);
         transactionDetails.addProperty("corporate_surcharge", corporateCardSurcharge);
         transactionDetails.addProperty("refunded_by", refundedById);
+        transactionDetails.addProperty("card_brand_label", "Visa");
         Optional.ofNullable(externalMetadata)
                 .ifPresent(cd -> transactionDetails.add("external_metadata", externalMetadata));
         Optional.ofNullable(captureSubmittedDate).ifPresent(
