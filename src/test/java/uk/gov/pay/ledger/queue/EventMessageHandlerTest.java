@@ -13,6 +13,7 @@ import uk.gov.pay.ledger.event.model.response.CreateEventResponse;
 import uk.gov.pay.ledger.transaction.service.TransactionService;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
@@ -50,8 +51,7 @@ public class EventMessageHandlerTest {
         EventMessage message = mock(EventMessage.class);
 
         when(eventQueue.retrieveEvents()).thenReturn(List.of(message));
-        when(eventService.createIfDoesNotExist(any())).thenReturn(createEventResponse);
-
+        when(eventService.createOrUpdateIfExists(any())).thenReturn(createEventResponse);
     }
 
     @Test
