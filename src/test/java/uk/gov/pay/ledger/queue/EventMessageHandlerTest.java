@@ -8,12 +8,11 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import uk.gov.pay.ledger.event.model.Event;
 import uk.gov.pay.ledger.event.model.EventDigest;
-import uk.gov.pay.ledger.event.service.EventService;
 import uk.gov.pay.ledger.event.model.response.CreateEventResponse;
+import uk.gov.pay.ledger.event.service.EventService;
 import uk.gov.pay.ledger.transaction.service.TransactionService;
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
