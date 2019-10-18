@@ -12,6 +12,7 @@ import uk.gov.pay.ledger.util.DatabaseTestHelper;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.ZonedDateTime;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -205,7 +206,7 @@ public class EventDaoIT {
                 .toEntity();
 
         List<Event> eventList = eventDao.findEventsForExternalIds(Set.of("external-id-1", "external-id-2"));
-
+        System.out.println(Arrays.toString(eventList.toArray()));
         assertThat(eventList.size(), is(2));
 
         assertThat(eventList.get(0).getResourceExternalId(), is(event1.getResourceExternalId()));
@@ -221,7 +222,7 @@ public class EventDaoIT {
     @Test
     public void eventDetailsAreUpdated_IfEventAlreadyExists(){
         Event event = anEventFixture()
-                .withResourceExternalId("external-id-1")
+                .withResourceExternalId("key-value-test-id")
                 .insert(rule.getJdbi())
                 .toEntity();
         Event event2 = anEventFixture()
