@@ -206,7 +206,6 @@ public class EventDaoIT {
                 .toEntity();
 
         List<Event> eventList = eventDao.findEventsForExternalIds(Set.of("external-id-1", "external-id-2"));
-        System.out.println(Arrays.toString(eventList.toArray()));
         assertThat(eventList.size(), is(2));
 
         assertThat(eventList.get(0).getResourceExternalId(), is(event1.getResourceExternalId()));
