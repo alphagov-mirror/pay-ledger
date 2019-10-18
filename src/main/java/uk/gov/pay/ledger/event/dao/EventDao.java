@@ -48,7 +48,7 @@ public interface EventDao {
     Optional<Long> insertIfDoesNotExist(@BindBean Event event, @Bind("resourceTypeId") int resourceTypeId);
 
     @SqlUpdate("UPDATE event " +
-            "SET event_details = CAST(:eventDetails as jsonb) " +
+            "SET event_data = CAST(:eventData as jsonb) " +
             "WHERE resource_type_id = :resourceTypeId " +
             "AND resource_external_id = :resourceExternalId " +
             "AND event_date = :eventDate " +

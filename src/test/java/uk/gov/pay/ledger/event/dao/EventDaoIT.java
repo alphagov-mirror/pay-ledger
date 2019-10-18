@@ -217,4 +217,19 @@ public class EventDaoIT {
         List<Event> eventList = eventDao.findEventsForExternalIds(Set.of("some-ext-id-1", "some-ext-id-2"));
         assertThat(eventList.size(), is(0));
     }
+
+    @Test
+    public void eventDetailsAreUpdated_IfEventAlreadyExists(){
+        Event event = anEventFixture()
+                .withResourceExternalId("external-id-1")
+                .insert(rule.getJdbi())
+                .toEntity();
+        Event event2 = anEventFixture()
+                .withResourceExternalId(event.getResourceExternalId())
+                .withEventData("{\"key\": \"value\"}")
+                .withEventDate(event.getEventDate())
+                .toEntity();
+        eventDao.updateIfExistsWithResourceTypeId(event2);
+        assertThat(eventDao.getById(event.getId()).get().getEventData(), is("{\"key\": \"value\"}"));
+    }
 }
