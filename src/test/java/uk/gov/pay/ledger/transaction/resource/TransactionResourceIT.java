@@ -19,6 +19,7 @@ import javax.ws.rs.core.Response;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.UUID;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
@@ -65,6 +66,15 @@ public class TransactionResourceIT {
                 .body("card_details.expiry_date", is(transactionFixture.getCardDetails().getExpiryDate()))
                 .body("card_details.card_type", is(transactionFixture.getCardDetails().getCardType().toString().toLowerCase()))
                 .body("card_details.billing_address.line1", is(transactionFixture.getCardDetails().getBillingAddress().getAddressLine1()));
+    }
+
+    @Test
+    public void shouldReturn404ForNonExistentTransaction() {
+        given().port(port)
+                .contentType(JSON)
+                .get("/v1/transaction/does-not-exist?account_id=" + transactionFixture.getGatewayAccountId())
+                .then()
+                .statusCode(Response.Status.NOT_FOUND.getStatusCode());
     }
 
     @Test
