@@ -260,22 +260,6 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>au.com.dius</groupId>
-                <artifactId>pact-jvm-provider-maven_2.12</artifactId>
-                <version>3.6.15</version>
-                <configuration>
-                    <pactDirectory>target/pacts</pactDirectory>
-                    <pactBrokerUrl>${PACT_BROKER_URL}</pactBrokerUrl>
-                    <pactBrokerUsername>${PACT_BROKER_USERNAME}</pactBrokerUsername>
-                    <pactBrokerPassword>${PACT_BROKER_PASSWORD}</pactBrokerPassword>
-                    <projectVersion>${PACT_CONSUMER_VERSION}</projectVersion>
-                    <tags>
-                        <tag>${PACT_CONSUMER_TAG}</tag>
-                    </tags>
-                    <trimSnapshot>true</trimSnapshot>
-                </configuration>
-            </plugin>
-            <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
