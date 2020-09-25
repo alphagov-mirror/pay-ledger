@@ -1,5 +1,6 @@
 package uk.gov.pay.ledger.transaction.search.common;
 
+import uk.gov.pay.commons.validation.DateTimeUtils;
 import uk.gov.pay.ledger.exception.UnparsableDateException;
 import uk.gov.pay.ledger.exception.ValidationException;
 import uk.gov.pay.ledger.util.CommaDelimitedSetParameter;
@@ -56,9 +57,7 @@ public class TransactionSearchParamsValidator {
     }
 
     private static void validSettledDate(String fieldName, String settledDateToParse) {
-        try {
-            DateTimeFormatter.ofPattern("yyyy-MM-dd").parse(settledDateToParse);
-        } catch (DateTimeParseException e) {
+        if (!DateTimeUtils.fromLocalDateOnlyString(settledDateToParse).isPresent()) {
             throw new UnparsableDateException(fieldName, settledDateToParse);
         }
     }
